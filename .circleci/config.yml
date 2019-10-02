@@ -31,14 +31,10 @@ jobs:
           name: Build docs
           command: cd docs && yarn run build
 
-      # store static artifacts
-      - store_artifacts:
-          path: docs/public
-
       # notify featurepeek
       - run:
           name: Pinging FeaturePeek
-          command: yarn featurepeek
+          command: bash <(curl -s https://peek.run/ci)
 
 workflows:
   version: 2
