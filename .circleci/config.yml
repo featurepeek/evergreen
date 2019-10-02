@@ -23,9 +23,18 @@ jobs:
           paths:
             - ./docs/node_modules
 
-      - run: yarn run build
-      - run: yarn run test
-      - run: yarn run size-limit
+      - run: 
+          name: Build components
+          command: yarn run build
+
+      - run: 
+          name: Build docs
+          command: cd docs && yarn run build
+
+      # notify featurepeek
+      - run:
+          name: Pinging FeaturePeek
+          command: bash <(curl -s https://peek.run/ci)
 
 workflows:
   version: 2
